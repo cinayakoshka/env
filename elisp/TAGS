@@ -1,0 +1,361 @@
+
+bar-abbrevs.el,204
+(defun my-abbrev-checker 4,43
+(defun sub-abcheck 23,932
+(defun check-word 36,1355
+(defun my-abbrev-check-word 66,2680
+(defun monitor-abbrevs 94,3694
+(define-minor-mode  monitor-abbrev-mode 104,4001
+
+bar-checkbook.el,26
+(defun bank-balance 2,38
+
+bar-cite.el,610
+(defvar bar-cite-citation-letters 2,39
+(defvar bar-cite-citation-hash 3,129
+(defvar bar-cite-citation-format 5,239
+(defvar bar-cite-bib-apropos-history 6,307
+(defun bar-cite-bib-apropos 8,349
+(defun bar-cite-insert-repeat-citation 45,2053
+(defun bar-cite-insert-new-citation 51,2264
+(defun bar-cite-add-new-citation-to-hash 64,2772
+(defun bar-cite-bib-apropos-menu 84,3763
+(defun bar-cite-citation-menu 111,4319
+(defvar bar-cite-mode-menu 142,5194
+(define-minor-mode bar-cite-mode 171,6097
+(defvar translation-count 179,6277
+(defvar default-tran-dir 180,6306
+(defvar secondary-tran-dir 182,6390
+
+bar-colors.el,207
+(defun switch-default-frame-alist 1,0
+(defvar navyblue-frame-alist7,133
+(defvar red-frame-alist22,522
+(defvar white-frame-alist37,904
+(defvar purple-frame-alist55,1379
+(defvar black-frame-alist71,1770
+
+bar-convenience.el,168
+(defun my-call-last-kbd-macro(3,27
+(defun my-start-or-end-kbd-macro 12,227
+(defun my-save-buffers-kill-emacs 17,340
+(defun my-bind(23,556
+(defun my-get-cwd(30,741
+
+bar-edit.el,542
+(defvar  my-fixable-chars 3,41
+(defun my-delete-last 5,124
+(defun my-fix-last 13,246
+(defvar my-fix-last-history 23,563
+(defvar my-fixed-last-history 24,622
+(defun my-replace-last 26,684
+(defun my-buffers-menu-write-file(37,1018
+(defun my-upcase-backwards 41,1120
+(defun delete-rest-of-buffer 50,1329
+(defun my-ispell-word-backwards 55,1474
+(defun my-upcase-region(64,1687
+(defun my-downcase-region(71,1876
+(defun pipe-to-end 78,2069
+(defun quote-to-end 83,2140
+(defun underline-line 115,2680
+(defun kill-white-after 134,3130
+
+bar-elisp.el,103
+(defun my-load-current-file(3,36
+(defun my-byte-compile-current-file(10,208
+(defun eval-line 19,433
+
+bar-frames.el,384
+(defun make-other-frames-translucent 1,0
+(defun my-make-frame-opaque 10,374
+(defun my-make-frame-transparent 14,484
+(defun transparency-set-initial-value 20,739
+(defun transparency-set-value 26,952
+(defun transparency-increase 35,1317
+(defun transparency-decrease 43,1636
+(defun my-cycle-visible-and-invisible-frames 59,2291
+(defun my-make-all-other-frames-invisible 81,2999
+
+bar-mac.el,42
+(defun my-emacs-growl-this-message 8,145
+
+bar-menus.el,1221
+(defun my-get-index(5,169
+(defun my-choose 23,537
+(defun my-overlay-window 83,2459
+(defun my-menus-goto-line(95,2917
+(defun my-menus-goto-char(99,3022
+(defun my-replace-regexp-menu-interactive-replace(103,3127
+(defun my-replace-regexp-menu-global-replace(115,3531
+(defun my-regexp-func-menu-global-insert-white-space(126,3908
+(defun my-regexp-func-menu-global-replace-caret 133,4123
+(defun my-regexp-func-menu-global-replace-dollar 141,4360
+(defun my-regexp-func-menu-global-remove-leading-white-space(150,4620
+(defun my-regexp-func-menu-global-remove-control-chars(157,4844
+(defun my-regexp-func-menu-global-remove-newline(169,5120
+(defun my-replace-regexp-menu-interactive-remove-newline(176,5321
+(defun my-regexp-func-menu-global-remove-trailing-white-space(183,5537
+(defun my-replace-menu-interactive-replace-string(190,5762
+(defun my-replace-menu-global-replace-string(202,6154
+(defun define-keys 213,6532
+(defun global-set-keys 220,6699
+(defun my-bookmark-menu(227,6866
+(defun my-buffers-menu(268,7879
+(defun my-elisp-menu(300,8633
+(defun my-macro-menu(359,10190
+(defun my-points-menu(393,10804
+(defun my-replace-menu(417,11264
+(defun my-tags-menu(467,12806
+(defun my-main-menu(498,13451
+
+bar-nav.el,316
+(defun my-goto-match-beginning 3,27
+(defun my-bookmark-load-current-buffer(6,118
+(defun my-get-bookmark-name 14,308
+(defun my-buffers-previous-buffer 22,459
+(defun my-point-jump(26,563
+(defun my-point-store(36,896
+(defun my-tags-apropos 46,1155
+(defun my-tags-search 53,1382
+(defun end-of-next-line 60,1606
+
+bar-vm.el,129
+(defun email-from-kgmail 23,685
+(defun email-from-unm 34,1088
+(defun email-from-gmail 45,1468
+(defun my-set-reply-to 56,1879
+
+bar-yank.el,60
+(defun yank-by-regexp 1,0
+(defun yank-by-regexp-2 40,1072
+
+bar.el,89
+(defconst mirror-head-dir 5,185
+(defun mirror-file 7,224
+(defun my-mirror-menu(21,833
+
+bars-old-hacks.el,644
+(defvar my-outline-doc-start-regexp 2,29
+(defvar my-outline-unwritten-item-regexp 4,119
+(defvar my-outline-written-item-string 6,205
+(defun add-list-of-names-to-blank-table 46,1700
+(defun translate 67,2206
+(defvar my-quote-however-copy-history 109,3898
+(defun my-quote-however-copy 111,3941
+(defun my-pipe-quote-copy 126,4429
+(defun my-no-newlines-copy 130,4506
+(defun catch-url 140,4783
+(defun count-words-in-region 185,5765
+(defun check-vm-mail 197,6174
+(defvar my-twitter-ident 203,6284
+(defun translate 206,6382
+(defun twit 214,6618
+(defun twitter-get-my-timeline 221,6759
+(defun get-timeline 228,6928
+(defun odd 239,7342
+
+javascript.el,1875
+(defgroup javascript 63,2006
+(defcustom javascript-indent-level 68,2125
+(defcustom javascript-expr-indent-offset 73,2250
+(defcustom javascript-auto-indent-flag 80,2476
+(defvar javascript-mode-map 89,2713
+(defun javascript-insert-and-indent 100,3028
+(defvar javascript-mode-syntax-table110,3378
+(defun js-re-search-forward-inner 124,3831
+(defun js-re-search-forward 146,4601
+(defun js-re-search-backward-inner 166,5332
+(defun js-re-search-backward 190,6226
+(defun js-inside-param-list-p 212,6983
+(defconst js-function-heading-1-re 224,7304
+(defconst js-function-heading-2-re 228,7442
+(defconst js-keyword-re233,7615
+(defconst js-basic-type-re245,8281
+(defconst js-constant-re250,8487
+(defconst js-font-lock-keywords-1255,8635
+(defconst js-font-lock-keywords-2262,8857
+(defconst js-font-lock-keywords-3281,9606
+(defconst js-font-lock-keywords314,10432
+(defconst js-font-lock-syntactic-keywords319,10625
+(defconst js-possibly-braceless-keyword-re327,10855
+(defconst js-indent-operator-re334,11086
+(defun js-looking-at-operator-p 341,11316
+(defun js-continued-expression-p 352,11672
+(defun js-end-of-do-while-loop-p 368,12223
+(defun js-ctrl-statement-indentation 393,13188
+(defun js-proper-indentation 414,13996
+(defun javascript-indent-line 445,15334
+(defun js-backward-paragraph 464,16051
+(defun js-forward-paragraph 473,16354
+(defun js-fill-block-comment-paragraph 482,16643
+(defun js-sline-comment-par-start 523,18324
+(defun js-sline-comment-par-end 535,18672
+(defun js-sline-comment-offset 546,18980
+(defun js-sline-comment-text-offset 556,19244
+(defun js-at-empty-sline-comment-p 565,19494
+(defun js-fill-sline-comments 574,19782
+(defun js-trailing-comment-p 610,21203
+(defun js-block-comment-p 621,21531
+(defun javascript-fill-paragraph 632,21854
+(defconst js-imenu-generic-expression 647,22367
+(defun javascript-mode 659,22589
+
+light-symbol.el,448
+(defvar light-symbol-idle-delay 46,1474
+(defvar light-symbol-face 50,1634
+(defvar light-symbol-timer 55,1774
+(defvar light-symbol-previous-symbol 59,1896
+(defconst light-symbol-rx-start61,1939
+(defconst light-symbol-rx-end67,2077
+(defun light-symbol-schedule-timer 73,2211
+(defun light-symbol-refontify 80,2489
+(defun light-symbol-show-symbol 85,2602
+(defun light-symbol-pre-command 110,3661
+(define-minor-mode light-symbol-mode117,3889
+
+linum.el,313
+(defconst linum-version 34,1104
+(defvar linum-overlays 36,1137
+(defvar linum-active 37,1165
+(defvar linum-overlay-property 38,1191
+(defgroup linum 41,1319
+(defcustom linum-format 46,1423
+(defun linum 82,2711
+(defun linum-dynamic-format 97,3214
+(defun linum-update 107,3516
+(defun linum-version 139,4712
+
+perspective.el,2154
+(defmacro persp-frame-local-let 52,1843
+(defstruct (perspective77,2972
+(defalias 'persp-killed-p persp-killed-p84,3211
+(defvar persp-mode-hook 87,3310
+(defvar persp-created-hook 90,3401
+(defvar persp-killed-hook 94,3550
+(defvar persp-activated-hook 98,3702
+(defvar persp-mode-map 102,3842
+(define-prefix-command 'perspective perspective105,3921
+(define-key persp-mode-map 106,3975
+(define-key persp-mode-map 108,4034
+(define-key persp-mode-map 109,4092
+(define-key persp-mode-map 110,4157
+(define-key persp-mode-map 111,4213
+(define-key persp-mode-map 112,4271
+(define-key persp-mode-map 113,4333
+(defvar persp-show-modestring 160,5873
+(defface persp-selected-face165,6051
+(defun check-persp 169,6197
+(defmacro make-persp 177,6432
+(defun persp-save 204,7523
+(defun persp-names 218,8071
+(defun persp-all-names 225,8273
+(defun persp-prompt 235,8601
+(defmacro with-perspective 247,9051
+(defun persp-new 253,9276
+(defun persp-reactivate-buffers 262,9589
+(defun persp-set-local-variables 273,9987
+(defun persp-intersperse 278,10164
+(defconst persp-mode-line-map289,10546
+(defun persp-mode-line-click 294,10692
+(defun persp-update-modestring 300,10914
+(defun persp-format-name 309,11262
+(defun persp-get-quick 318,11657
+(defun persp-get-quick-helper 327,12034
+(defun persp-switch 338,12443
+(defun persp-activate 357,13183
+(defun persp-switch-quick 369,13637
+(defun persp-find-some 383,14233
+(defun persp-add-buffer 404,14954
+(defun* persp-buffer-in-other-p 416,15347
+(defun persp-remove-buffer 429,16022
+(defun persp-kill 445,16730
+(defun persp-rename 464,17481
+(defun* persp-all-get 474,17851
+(defun persp-read-buffer 486,18312
+(defun persp-complete-buffer 513,19582
+(defun* persp-import 522,20042
+(defadvice switch-to-buffer 543,21026
+(defadvice recursive-edit 551,21353
+(defadvice exit-recursive-edit 566,22031
+(define-minor-mode persp-mode571,22253
+(defun persp-init-frame 597,23255
+(defun persp-make-variable-persp-local 623,24411
+(defun persp-set-ido-buffers 635,25068
+(defun quick-perspective-keys 640,25294
+(defun persp-turn-off-modestring 651,25711
+(defun persp-turn-on-modestring 657,25873
+
+tapestry.el,1476
+(defvar tapestry-version 23,910
+(defvar tapestry-windows-changed 28,1116
+(defun tapestry 30,1155
+(defun set-tapestry 56,2127
+(defun tapestry-frame-map 107,4379
+(defun tapestry-set-frame-map 122,4854
+(defun tapestry-window-map 133,5248
+(defun tapestry-set-window-map 159,6286
+(defun tapestry-buffer-map 214,8370
+(defun tapestry-set-buffer-map 249,9562
+(defun tapestry-position-map 272,10671
+(defun tapestry-set-position-map 285,11018
+(defun tapestry-apply-window-map 301,11669
+(defun tapestry-windows-match-map 339,12839
+(defun tapestry-find-window-map-edges 398,14701
+(defun tapestry-compute-map-width 414,15256
+(defun tapestry-compute-map-height 418,15387
+(defun tapestry-delassq 423,15562
+(defun tapestry-remove-frame-parameters 435,15849
+(defun tapestry-nullify-tapestry-elements 444,16137
+(defun tapestry-replace-tapestry-element 464,16785
+(defun tapestry-window-list 489,17501
+(defun tapestry-first-window 499,17877
+(defun tapestry-window-area 517,18570
+(defun tapestry-window-overlap 521,18683
+(defun tapestry-window-edges 541,19581
+(defun tapestry-frame-list 561,20235
+(defun tapestry-frame-parameters 566,20330
+(defun tapestry-window-frame 571,20450
+(defun tapestry-modify-frame-parameters 576,20548
+(defun tapestry-select-frame 581,20691
+(defun tapestry-selected-frame 586,20789
+(defun tapestry-next-frame 591,20890
+(defun tapestry-make-frame 596,21000
+(defun tapestry-delete-frame 601,21110
+(defun tapestry-frame-live-p 606,21218
+
+u-vm-color.el,1439
+(defconst u-vm-color-version 13,386
+(defgroup u-vm-color 138,5948
+(defcustom u-vm-color-use-gnus-faces 142,6018
+(defface u-vm-color-signature-face147,6149
+(defface u-vm-color-header-face155,6414
+(defface u-vm-color-author-face163,6683
+(defface u-vm-color-recipient-face171,6963
+(defface u-vm-color-subject-face179,7235
+(defface u-vm-color-default-face187,7503
+(defface u-vm-color-time-face192,7598
+(defface u-vm-color-attribute-face200,7858
+(defface u-vm-color-date-face208,8123
+(defface u-vm-color-id-face216,8383
+(defface u-vm-color-label-face221,8490
+(defface u-vm-color-length-face229,8751
+(defface u-vm-color-number-face237,9015
+(defface u-vm-color-user-face245,9279
+(defface u-vm-color-citation-1-face253,9573
+(defface u-vm-color-citation-2-face261,9846
+(defface u-vm-color-citation-3-face269,10115
+(defface u-vm-color-citation-4-face277,10380
+(defface u-vm-color-citation-5-face285,10649
+(defface u-vm-color-spamassassin-face293,10920
+(defun u-vm-color-copy-gnus-faces 301,11211
+(defun u-vm-color-make-specific-length-regexp 331,12543
+(defun u-vm-color-make-summary-keywords 356,13318
+(defvar u-vm-color-summary-mode 540,21031
+(defvar u-vm-color-summary-keywords 544,21186
+(defun u-vm-color-summary-mode 547,21283
+(defun u-vm-color-fontify-regexp 598,23073
+(defun u-vm-color-fontify-signature 621,23892
+(defun u-vm-color-fontify-buffer 633,24258
+(defun u-vm-color-fontify-buffer-even-more 696,26854
+
+sig-quote.el,0
