@@ -78,6 +78,8 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+(setq auto-mode-alist (remove (rassoc 'org-mode auto-mode-alist) auto-mode-alist))
+
 ;; ;; ------------------------------------------------------------------------
 (require 'bar-edit)
 (require 'bar-nav)
