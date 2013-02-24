@@ -650,7 +650,7 @@ performs various tags-related functions depending on choice."
    "$" 'magit-status
    "W" '(lambda () (interactive) (flyspell-check-previous-highlighted-word))
    [return] 'undo
-   [backspace] 'ns-toggle-fullscreen
+   [backspace] 'toggle-frame-fullscreen
    [f7] my-fix-keymap
    "9" '(lambda ()
 	  (interactive)
@@ -668,7 +668,7 @@ performs various tags-related functions depending on choice."
    [(shift delete)]    'backward-delete-char-untabify
    [(control delete)]  'backward-delete-char-untabify
    [f5]                'delete-frame
-   [f6]                '(lambda () (interactive) (make-frame-command) (ns-toggle-fullscreen))
+   [f6]                '(lambda () (interactive) (make-frame-command))
    [(shift f6)]        'save-buffer
    [(control tab)]     'other-frame
  [(shift f5)] 'list-colors-display
