@@ -63,7 +63,7 @@
 (setq x-select-enable-clipboard t)
 (desktop-save-mode 1)
 (setq enable-recursive-minibuffers t)
-(setq tool-bar-mode nil)
+(tool-bar-mode -1)
 (load-theme 'tango-dark)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
