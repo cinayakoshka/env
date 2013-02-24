@@ -19,7 +19,6 @@
 					"~/.emacs.d/org/lisp/org-mode/lisp"
 					"~/.emacs.d/org/lisp/org-mode/contrib/lisp"
 					(expand-file-name "~/vm/lisp")
-					"~/.emacs.d/ensime/elisp/"
 					)))
 
 (setq exec-path (append exec-path (list "/usr/local/bin" "/Users/barshirtcliff/bin")))
@@ -63,7 +62,7 @@
 (setq x-select-enable-clipboard t)
 (desktop-save-mode 1)
 (setq enable-recursive-minibuffers t)
-(tool-bar-mode -1)
+(setq tool-bar-mode nil)
 (load-theme 'tango-dark)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -76,7 +75,8 @@
 
 (add-hook 'find-file-hook 'sm-try-smerge t)
 (desktop-save-mode 1)
-
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; ;; ------------------------------------------------------------------------
 (require 'bar-edit)
@@ -96,10 +96,6 @@
 ;; (org-babel-load-library-of-babel)
 ;; (require 'sig-quote)
 (require 'uniquify)
-(require 'ensime)
-(require 'scala-mode-auto)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-(require 'erc-customize)
 (require 'recentf)
 
 (put 'narrow-to-region 'disabled nil)
