@@ -1,88 +1,107 @@
-;; abbrev
+;; bar's reminders and convenience stuff for abbrevs, take two.
+
 (setq dabbrev-case-replace nil)
 
-(defun my-abbrev-checker ()
-  "Checks for the existence of an abbrev and offers to define it locally."
-  (interactive)
-  (save-excursion
-    (let ((wrd (buffer-substring-no-properties (point) (save-excursion (forward-word -1) (point)))))
-      (setq abb (catch 'foo
-		  (sub-abcheck wrd)))
-      (if abb (message (format "%s" abb))
-	(let ((lcl (abbrev-table-name local-abbrev-table)))
-	  (if (y-or-n-p-with-timeout (format "no abbrev found for \"%s\" in %s.  define locally? " wrd lcl) 5 nil)
-	      (progn
-		(setq abbr (read-from-minibuffer (format "%s abbrev for %s: " lcl wrd)))
-		(if (abbrev-expansion abbr local-abbrev-table)
-		    (if (y-or-n-p (format "%s expands to \"%s\"; redefine? " abbr (abbrev-expansion abbr local-abbrev-table)))
-			(define-abbrev local-abbrev-table abbr wrd)
-		      (minibuffer-message "okay."))
-		  (define-abbrev local-abbrev-table abbr wrd))))) )) ))
+;; ----------------------------------------------------------------------
+;; monitor-abbrev-mode.
+;; ----------------------------------------------------------------------
+(require 'thingatpt)
 
-;; this is horrible!!!
-(defun sub-abcheck (wrd)
-  "checks to see if word already has an abbrev defined.
-Used within my-abbrev-checker.  Returns abbrev name or nil."
-  (let ((slist nil))
-    (mapatoms (function (lambda (sym) (setq slist (push (symbol-name sym)  slist)))) local-abbrev-table)
-    (mapc
-     '(lambda (s)
-	(if (string= (abbrev-expansion s local-abbrev-table) wrd)
-	    (throw 'foo s))) slist)
-    nil))
+(defun abbrev-for (word)
+  "See if a word has an abbrev defined.
+If it does, return the first one.  Otherwise, nil."
+  (let (
+   (tables (list (symbol-name (abbrev-table-name local-abbrev-table))
+		 (symbol-name (abbrev-table-name global-abbrev-table))
+		 (symbol-name (abbrev-table-name text-mode-abbrev-table))))
+   )
+    (car (mapcar '(lambda (table) (abbrev-for-in-table word table)) tables))))
 
-;; minor-mode monitor-abbrev-mode
+(defun abbrev-for-in-table(word table)
+  (let (
+         (res (shell-command-to-string
+            (format "%s -d \" ))\" \"'%s\" %s | grep  '\"%s\"'" 
+            (expand-file-name "~/bin/agrep")
+            (car (split-string table "-abbrev-table"))
+             (expand-file-name abbrev-file-name)
+             word)))
+         )
+    (if (or (not res)
+            (not (string-prefix-p "    (" res)))
+        nil
+      (car (cdr (delete " " 
+             (split-string res "\"" 
+			   split-string-default-separators)))))
+    )
+  )
+	
 
 (defun check-word ()
-  "Part of monitor-abbrev mode."
-  (interactive)
-  (let ((ab nil)
-        (start (point))
-        (word (car (flyspell-get-word nil)))) ;; this should actually
-    ;; make a list of words
-    ;; to check.  we might
-    ;; have something that
-    ;; expands to a xxx-xxx
-    ;; pattern, or a LaTeX
-    ;; markup item, etc.
-    (save-excursion
-      (if (not (abbrev-symbol word));; it should go past here for
-          ;; just-now expanded abbrevs!  fix
-          ;; me!
-          (my-abbrev-check-word word)))))
-;; (set-process-filter (my-abbrev-check-word) 'abbrev-grep-filter)
+  (let ((word (thing-at-point 'word)))
+    (if (abbrev-symbol word)
+        (abbrev--default-expand)
+      (let ((abbrev (abbrev-for word)))
+        (if abbrev
+            (message "%s -> %s" abbrev word))))))
 
-(defun my-abbrev-check-word (word)
-  "Part of monitor-abbrev mode.
-This function does the work of checking each word.  It is called by check-word."
-  (async-shell-command 
-   (shell-quote-argument
-    (format "agrep -d \" ))\" \"'text-mode-abbrev-table\" %s | grep  '\"%s\"'" abbrev-file-name word))
-   ))
+(defun check-my-abbrevs() (interactive)
+       (setq abbrev-expand-function 'check-word))
 
-(defun abbrev-grep-filter (proc string)
-  (with-current-buffer (process-buffer proc)
-    (insert string)
-    ))
+;; ----------------------------------------------------------------------
+;; not related to monitor-abbrev.  this is juts convenience.
+;; ----------------------------------------------------------------------
 
-
-
-(add-hook 'monitor-abbrev-mode-hook
-          'monitor-abbrevs)
-
-(defun monitor-abbrevs ()
-  (interactive)
-  (add-hook
-   'pre-abbrev-expand-hook
-   'check-word t t)
-  (get-buffer-create "*Missed Abbrevs*"))
-
-(define-minor-mode  monitor-abbrev-mode "monitor abbrev mode"
-  :lighter " mon-abbrev "
-  :global nil
-  :keymap '(
-            ("\C-q" . '(lambda () (remove-hook 'pre-abbrev-expand-hook 'check-word t)))
-	    (run-mode-hooks 'monitor-abbrev-mode-hooks)))
-
+(defun my-abbrev-checker ()
+ "Checks for the existence of an abbrev and offers to define it locally."
+ (interactive)
+ (save-excursion
+  (let* ((wrd (buffer-substring-no-properties (point) (save-excursion (forward-word -1) (point))))
+         (abb (abbrev-for wrd)))
+    (if abb 
+      (message (format "%s" abb))
+      (let ((lcl (abbrev-table-name local-abbrev-table)))
+       (if (y-or-n-p-with-timeout 
+            (format "no abbrev found for \"%s\" in %s.  define locally? " wrd lcl) 5 nil)
+	 (progn
+	  (setq abbr (read-from-minibuffer (format "%s abbrev for %s: " lcl wrd)))
+	  (if (abbrev-expansion abbr local-abbrev-table)
+            (if (y-or-n-p (format "%s expands to \"%s\"; redefine? " abbr 
+                                  (abbrev-expansion abbr local-abbrev-table)))
+		(define-abbrev local-abbrev-table abbr wrd))
+	    (define-abbrev local-abbrev-table abbr wrd))))) )) ))
 
 (provide 'bar-abbrevs)
+
+;; use abbrevs in scala comments:
+;; change char-after below to matching "//" earlier in the line.
+;; (defun scala-mode-abbrev-expand-function (expand)
+;;   (if (not (save-excursion (forward-line 0) (eq (char-after) ?#)))
+;;       ;; Performs normal expansion.
+;;       (funcall expand)
+;;     ;; We're inside a comment: use the text-mode abbrevs.
+;;     (let ((local-abbrev-table text-mode-abbrev-table))
+;;       (funcall expand))))
+
+;; (add-hook 'scala-mode-hook
+;;           #'(lambda ()
+;;               (add-hook 'abbrev-expand-functions
+;;                         'scala-mode-abbrev-expand-function
+;;                         nil t)))
+
+;; non-shell version in case agrep gets lost
+;; ;; returns the abbrev if the word has one.
+;; ;; first abbrev found if multiple..
+;; (defun abbrev-for (wrd)
+;;  (let ((checks nil))
+;;   (mapatoms 
+;;    (lambda (abb) (let ((ab (symbol-name abb)))
+;;      (if (expands-to ab wrd) (push ab checks)))))
+;;   (if checks
+;;       (car checks)
+;;       nil)))
+
+
+;; ;; returns true if the abbrev expands to the word.
+;; (defun expands-to (ab wrd) 
+;;   (string= wrd 
+;;    (abbrev-expansion ab local-abbrev-table)))

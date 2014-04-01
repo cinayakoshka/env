@@ -1,3 +1,17 @@
+;; this is from Ian Eure
+(defun window-toggle-dedicated (&optional window)
+  "Toggle the dedicated flag on a window."
+  (interactive)
+  (let* ((window (or window (selected-window)))
+         (dedicated (not (window-dedicated-p window))))
+    (when (called-interactively-p)
+      (message (format "%s %sdedicated"
+                       (buffer-name (window-buffer window))
+                       (if dedicated "" "un"))))
+    (set-window-dedicated-p window dedicated)
+    dedicated))
+
+
 ;; I did not write these.
 
 (defun my-call-last-kbd-macro(num)
@@ -67,5 +81,71 @@
 ;;                              " "
 ;;                              ))
 
+(defun buffer-filename-to-clipboard()
+  (interactive)
+ (kill-new buffer-file-name)
+)
+
+(defun narrow-with-indirect(start end)
+  (interactive "r")
+  (deactivate-mark)
+  (switch-to-buffer (clone-indirect-buffer nil nil))
+  (narrow-to-region start end))
+
+(defun narrow-split-horiz-with-indirect(start end)
+  (interactive "r")
+  (split-window-below)
+  (windmove-down)
+  (deactivate-mark)
+  (switch-to-buffer (clone-indirect-buffer nil nil))
+  (narrow-to-region start end))
+
+
+(defun narrow-split-vert-with-indirect(start end)
+  (interactive "r")
+  (split-window-right)
+  (windmove-right)
+  (deactivate-mark)
+  (switch-to-buffer (clone-indirect-buffer nil nil))
+  (narrow-to-region start end))
+
+
+(defun window-toggle-dedicated (&optional window)
+  "Toggle the dedicated flag on a window."
+  (interactive)
+  (let* ((window (or window (selected-window)))
+         (dedicated (not (window-dedicated-p window))))
+    (when (called-interactively-p)
+      (message (format "%s %sdedicated"
+                       (buffer-name (window-buffer window))
+                       (if dedicated "" "un"))))
+    (set-window-dedicated-p window dedicated)
+    dedicated))
+
+;; (defun balance-windows-vertically()
+;;   (interactive)
+;;   (assoc 'height (frame-parameters))
+;;   (assoc 'width (frame-parameters))
+;; )
+
+;; (defun this-frame-size-to-default()
+;; (interactive)
+;;   (setq (assoc 'height (frame-parameters)) (assoc 'height default-frame-alist)
+;; 	(assoc 'width (frame-parameters))) (assoc 'width  default-frame-alist)
+;; )
+
+
+
+
+
+
+(defun narrow-to-region-indirect (start end)
+  "Restrict editing in this buffer to the current region, indirectly."
+  (interactive "r")
+  (deactivate-mark)
+  (let ((buf (clone-indirect-buffer nil nil)))
+    (with-current-buffer buf
+      (narrow-to-region start end))
+      (switch-to-buffer buf)))
 
 (provide 'bar-convenience)
