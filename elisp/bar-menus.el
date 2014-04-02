@@ -589,12 +589,23 @@ performs various tags-related functions depending on choice."
    "," 'delete-other-windows
    "p" 'split-window-right
    "k" 'split-window-below
+   "e" 'delete-window
+   "i" 'bookmark-set
+   "a" '(lambda() (interactive) (bookmark-jump (my-get-bookmark-name "jump to")))
+   "l" 'list-bookmarks
+   ";" '(lambda() (interactive) (bookmark-rename (my-get-bookmark-name "rename")))
+   "d" 'window-toggle-dedicated
+   "D" 'edebug-defun
+   "r" 'query-replace
+   "s" 'scala-mode
+   "t" 'monitor-abbrevs-toggle
+   "f" '(lambda() (interactive) (frame-configuration-to-register (read-char "register-letter: " nil 3)))
    [left] 'winner-undo
    [right] 'winner-redo
    ;; ";" 'ime-ffip
    ;; "'" 'ime-ffip-other-window
-
-   [f9]               'my-cycle-visible-and-invisible-frames
+   [f7] 'my-cycle-visible-and-invisible-frames
+   [f9] 'my-save-frame-config-to-register-and-switch-to-register
 ))
 ;; (define-key ime-bindings-map "\C-cf" 'ime-ffip)
 ;; (define-key ime-bindings-map "\C-c4f" 'ime-ffip-other-window)
@@ -610,28 +621,25 @@ performs various tags-related functions depending on choice."
    "a" 'iedit-mode
    "A" 'abbrev-mode
    "b" 'switch-to-buffer
-   "B" 'bookmark-jump
+   "B" 'buffer-filename-to-clipboard
    "c" 'my-abbrev-checker
    "C" 'my-byte-compile-current-file
    "d"  my-delete-keymap
-   "D" 'ensime-disconnect
-   "E" 'eval-last-sexp
-   "e" 'ensime
-   "f" 'find-dired
-   "F" 'delete-rest-of-buffer
+   "e" 'eval-last-sexp
+   "E" 'edebug-defun
+   "f" 'find-file-in-project
    "g" 'vc-git-grep
-   "h" 'haskell-mode
+   "h" 'narrow-split-horiz-with-indirect
    "i" 'indent-region
    "I" 'ido-mode
    "j" 'comment-or-uncomment-region
-   "J" 'javascript-mode
    "k" 'kill-buffer
+   "K" '(lambda() (interactive) (kill-buffer) (kill-buffer))
    "l" 'goto-line
-   "L" 'literate-haskell-mode
    "m" 'my-main-menu
-"o" '(lambda() (interactive) (other-window 1))
+   "n" 'narrow-to-region-indirect
+   "o" '(lambda() (interactive) (other-window 1))
    "O" 'my-make-frame-opaque
-   "p" 'php-mode
    "q" 'my-ispell-word-backwards
    "r" 'my-replace-last
    "R" '(lambda () (interactive) (revert-buffer nil t t))
@@ -640,7 +648,7 @@ performs various tags-related functions depending on choice."
    "t" 'my-make-frame-transparent
    "T" 'my-make-frame-invisible
    "U" 'my-upcase-backwards
-   "v" 'vm
+   "v" 'narrow-split-vert-with-indirect
    "w" 'ispell-word
    "x" 'my-make-all-other-frames-invisible
    "Y" 'yank-by-regexp
@@ -650,7 +658,7 @@ performs various tags-related functions depending on choice."
    "$" 'magit-status
    "W" '(lambda () (interactive) (flyspell-check-previous-highlighted-word))
    [return] 'undo
-   [backspace] 'ns-toggle-fullscreen
+   [backspace] 'toggle-frame-fullscreen
    [f7] my-fix-keymap
    "9" '(lambda ()
 	  (interactive)
@@ -658,7 +666,7 @@ performs various tags-related functions depending on choice."
 
 (global-set-keys
   (list
-   [f11] 'my-cycle-visible-and-invisible-frames
+   [f1] 'my-cycle-visible-and-invisible-frames
    [f7]   my-special-keymap
    [f9] my-secret-keymap
    "\C-x\C-c"          'my-save-buffers-kill-emacs
@@ -668,8 +676,8 @@ performs various tags-related functions depending on choice."
    [(shift delete)]    'backward-delete-char-untabify
    [(control delete)]  'backward-delete-char-untabify
    [f5]                'delete-frame
-   [f6]                '(lambda () (interactive) (make-frame-command) (ns-toggle-fullscreen))
-   [(shift f6)]        'save-buffer
+   [f6]                '(lambda () (interactive) (make-frame-command) (toggle-frame-fullscreen))
+   [(shift f6)]        '(lambda () ())
    [(control tab)]     'other-frame
  [(shift f5)] 'list-colors-display
    [f8]                'my-replace-menu
@@ -677,7 +685,7 @@ performs various tags-related functions depending on choice."
    "\M-."              'hippie-expand
    "\M-n"              'end-of-next-line
    "\M-t"              'my-make-frame-invisible
-   "\M-o"              'my-cycle-visible-and-invisible-frames
+   "\M-o"              'er/expand-region
    [end]               'dabbrev-expand
   "\M-p"               'isearch-backward
  "\C-e"               'end-of-line
@@ -685,5 +693,7 @@ performs various tags-related functions depending on choice."
  "\C-y"               'yank
 
   [prior]              'newline-and-indent))
+
+(global-set-key (kbd "C-c f") 'find-file-in-project)
 
 (provide 'bar-menus)

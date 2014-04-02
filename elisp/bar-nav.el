@@ -1,3 +1,12 @@
+(defun my-save-frame-config-to-register-and-switch-to-register ()
+  (interactive)
+  (let ((from-reg (read-char "from register: "))
+	(to-reg (read-char "to register: ")))
+    (frame-configuration-to-register from-reg)
+    (jump-to-register to-reg)
+    )
+)
+
 ;; I did not write these.
 
 (defun my-goto-match-beginning ()
@@ -61,5 +70,13 @@ Get regexp from user, then pass to tags-search function."
   (interactive)
   (next-line 1)
   (end-of-line))
+
+;; This is from Ian Eure
+(defun find-databag ()
+  "Open the current service's databag."
+  (interactive)
+  (let* ((root (locate-dominating-file default-directory ".git"))
+         (name (file-name-nondirectory (substring root  0 -1))))
+    (find-file-other-window (format "%s/cookbook/data/services/%s.json" root name))))
 
 (provide 'bar-nav)
