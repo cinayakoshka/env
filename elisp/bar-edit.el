@@ -148,4 +148,11 @@ My upcase-region function, done the way it was in the old days."
     (while (looking-at what-to-eat)
       (delete-char 1))))
 
+(defun multi-occur-global (regexp &optional nlines)
+      (interactive (occur-read-primary-args)) (multi-occur
+                                               (multi-occur-buffers) regexp))
+(defun list-defs () (interactive)
+  (occur "\\bdef\\b"))
+
+
 (provide 'bar-edit)

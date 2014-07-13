@@ -592,13 +592,11 @@ performs various tags-related functions depending on choice."
    "e" 'delete-window
    "i" 'bookmark-set
    "a" '(lambda() (interactive) (bookmark-jump (my-get-bookmark-name "jump to")))
-   "l" 'list-bookmarks
    ";" '(lambda() (interactive) (bookmark-rename (my-get-bookmark-name "rename")))
    "d" 'window-toggle-dedicated
    "D" 'edebug-defun
    "r" 'query-replace
-   "s" 'scala-mode
-   "t" 'monitor-abbrevs-toggle
+;   "t" 'monitor-abbrevs-toggle
    "f" '(lambda() (interactive) (frame-configuration-to-register (read-char "register-letter: " nil 3)))
    [left] 'winner-undo
    [right] 'winner-redo
@@ -624,7 +622,7 @@ performs various tags-related functions depending on choice."
    "B" 'buffer-filename-to-clipboard
    "c" 'my-abbrev-checker
    "C" 'my-byte-compile-current-file
-   "d"  my-delete-keymap
+   "d"  'list-defs
    "e" 'eval-last-sexp
    "E" 'edebug-defun
    "f" 'find-file-in-project
