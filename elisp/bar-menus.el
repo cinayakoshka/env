@@ -224,7 +224,59 @@ Wrapper for replace-string function, called from my-replace-menu."
       (progn
 		(global-set-key (car defns) (car (cdr defns)))
 		(global-set-keys (cdr (cdr defns))))))
+;; ----------------------------------------------------------------------
+;; things needed for dynamic menus
+;; ----------------------------------------------------------------------
+(defun genhash (hash ltrs opts)
+  (interactive)
+  (clrhash hash)
+  (mapc (lambda(opt)
+          (let ((ltr (best-match opt ltrs)))
+            (puthash opt ltr hash)
+            (setq ltrs (my-remove ltr ltrs))))
+        opts))
 
+(defun my-remove (thing things)
+  (setq newthings ())
+  (mapc '(lambda(x)
+           (if (not (string= x thing))
+               (setq newthings (cons x newthings)))) things)
+  (reverse newthings))
+                                
+
+(defun best-match (opt ltrs)
+  (let ((ltr (string (aref opt 0))))
+    (if (member ltr ltrs) ltr
+      (car (last ltrs)))
+    ))
+
+(defun bar-dynamic-menu (hash func)
+  "Presents a poppy-menu with all the choices in hash, employing (func choice)."
+  (setq choices ()
+        ltrs ())
+
+  (maphash
+   (lambda (key value)
+     (progn
+       (setq choices (cons key choices)
+             ltrs (cons (format "%s" value) ltrs))))
+   hash)
+
+  (let ((choice (my-choose choices ltrs)))
+
+    (maphash
+     '(lambda (key value)
+        (cond (
+               (string-equal choice value)
+               (funcall func key)))
+        )
+     hash))
+  )
+
+
+;; ----------------------------------------------------------------------
+;; actual menus
+;; ----------------------------------------------------------------------
 (defun my-bookmark-menu()
   "Defined in ~/emacs/elisp/my-menus.el.
 Puts up a menu of bookmark-related functions in the minibuffer, gets
@@ -625,7 +677,8 @@ performs various tags-related functions depending on choice."
    "d"  'list-defs
    "e" 'eval-last-sexp
    "E" 'edebug-defun
-   "f" 'find-file-in-project
+   "f" 'ime-ffip
+   "F" 'ime-ffip-other-window
    "g" 'vc-git-grep
    "h" 'narrow-split-horiz-with-indirect
    "i" 'indent-region
@@ -634,6 +687,7 @@ performs various tags-related functions depending on choice."
    "k" 'kill-buffer
    "K" '(lambda() (interactive) (kill-buffer) (kill-buffer))
    "l" 'goto-line
+   "L" '(lambda() (interactive) (kill-new (thing-at-point 'line)))
    "m" 'my-main-menu
    "n" 'narrow-to-region-indirect
    "o" '(lambda() (interactive) (other-window 1))
@@ -693,5 +747,6 @@ performs various tags-related functions depending on choice."
   [prior]              'newline-and-indent))
 
 (global-set-key (kbd "C-c f") 'find-file-in-project)
-
+(global-set-key (kbd "M--") 'save-word-under-point)
+(global-set-key (kbd "M-_") 'save-symbol-under-point)
 (provide 'bar-menus)
