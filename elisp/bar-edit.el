@@ -1,4 +1,41 @@
+;; scala java
+
+(defun ignore-other-specs () (interactive)
+       (let ((start (point)))
+         (beginning-of-buffer)
+         (replace-string "@Test " "@Ignore @Test ")
+         (beginning-of-buffer)
+         (replace-string "import org.junit.Test" "import org.junit.{Ignore, Test}")
+         (goto-char start)
+         (end-of-line)
+         (re-search-backward "@Ignore")
+         (delete-char 8)
+         (goto-char start)
+         )
+       )
+
+(defun unignore-all-specs () (interactive)
+       (let ((start (point)))
+         (beginning-of-buffer)
+         (replace-string "@Ignore @Test " "@Test ")
+         (beginning-of-buffer)
+         (replace-string "import org.junit.{Ignore, Test}" "import org.junit.Test")
+         (goto-char start)
+         )
+       )
+
 ;; many of these are not strictly mine.
+
+(defun clear-shell ()
+   (interactive)
+   (let ((comint-buffer-maximum-size 0))
+     (comint-truncate-buffer)))
+
+(defun save-word-under-point () (interactive)
+       (kill-new (word-at-point)))
+
+(defun save-symbol-under-point () (interactive)
+      (kill-new (symbol-at-point)))
 
 (defun py-narrow-to-class nil
   (interactive)
@@ -147,5 +184,12 @@ My upcase-region function, done the way it was in the old days."
       ((what-to-eat (if newlines-are-white " \\|\t\\|\n" " \\|\t")))
     (while (looking-at what-to-eat)
       (delete-char 1))))
+
+(defun multi-occur-global (regexp &optional nlines)
+      (interactive (occur-read-primary-args)) (multi-occur
+                                               (multi-occur-buffers) regexp))
+(defun list-defs () (interactive)
+  (occur "\\bdef\\b"))
+
 
 (provide 'bar-edit)

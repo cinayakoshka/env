@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<root>
+  
+  <item>
+    <appendix>Change DEL to f7</appendix>
+    <identifier>del_to_f7</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::FORWARD_DELETE,
+      KeyCode::F7
+    </autogen>
+  </item>
+  
+  <item>
+    <appendix>Change LGUI (Left Command) to F9</appendix>
+    <identifier>lgui_to_f9</identifier>
+    <autogen>
+      __KeyToKey__
+    KeyCode::COMMAND_L,
+    KeyCode::F9
+    </autogen>
+  </item>
+  
+  <item>
+    <appendix>Tab to delete</appendix>
+    <identifier>tab_to_delete</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::TAB,
+      KeyCode::DELETE
+    </autogen>
+  </item>
+
+    
+  <item>
+    <appendix>Delete to LCtrl</appendix>
+    <identifier>del_to_lctrl</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::DELETE,
+      KeyCode::OPTION_L
+    </autogen>
+  </item>
+
+  
+  <item>
+    <appendix>Return to Option L</appendix>
+    <identifier>return_to_optionl</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::RETURN,
+      KeyCode::CONTROL_L
+    </autogen>
+  </item>
+
+  <item>
+    <appendix>control l to lshift</appendix>
+    <identifier>control_l_to_lshift</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::CONTROL_L,
+      KeyCode::SHIFT_L
+    </autogen>
+  </item>
+
+  <item>
+    <appendix>Control R to RSHIFT</appendix>
+    <identifier>control_r_to_rshift</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::CONTROL_R,
+      KeyCode::SHIFT_R
+    </autogen>
+  </item>
+  
+  <item>
+    <appendix>Rshift to delete</appendix>
+    <identifier>rshift_to_delete</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::SHIFT_R,
+      KeyCode::DELETE
+    </autogen>
+</item>
+
+<item>
+    <appendix>Option L to LCommand</appendix>
+    <identifier>option_l_to_lcommand</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::OPTION_L,
+      KeyCode::COMMAND_L
+    </autogen>
+</item>
+
+<item>
+    <appendix>Option R to RCommand</appendix>
+    <identifier>option_r_to_rcommand</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::OPTION_R,
+      KeyCode::COMMAND_R
+    </autogen>
+  </item>
+
+
+<item>
+    <appendix>lshift to enter</appendix>
+    <identifier>lshift_to_enter</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::PC_APPLICATION,
+      KeyCode::RETURN
+    </autogen>
+</item>
+
+<item>
+    <appendix>lshift to tab</appendix>
+    <identifier>lshift_to_tab</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::SHIFT_L,
+      KeyCode::TAB
+    </autogen>
+</item>
+
+<item>
+    <appendix>jis underscore switch window</appendix>
+    <identifier>jis_underscore_to_switch_window</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::JIS_UNDERSCORE,
+      KeyCode::RUSSIAN_TILDE, ModifierFlag::COMMAND_L | ModifierFlag::SHIFT_L
+    </autogen>
+</item>
+
+<!-- repairs -->
+
+<item>
+    <appendix>quote to z</appendix>
+    <identifier>quote_to_z</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::QUOTE,
+      KeyCode::SLASH
+    </autogen>
+</item>
+
+<item>
+    <appendix>rshift to dash</appendix>
+    <identifier>rshift_to_dash</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::SHIFT_R,
+      KeyCode::QUOTE
+    </autogen>
+</item>
+
+<item>
+  <appendix>pageup to option v in emacs</appendix>
+    <identifier>pageup_to_option_v_emacs</identifier>
+    <appdef>
+      <appname>org.gnu.Emacs</appname>
+      <autogen>
+        __KeyToKey__
+        KeyCode::PAGEUP,
+        KeyCode::DOT, ModifierFlag::OPTION_L
+      </autogen>
+    </appdef>
+</item>
+
+
+<item>
+  <appendix>pagedown to control v in emacs</appendix>
+    <identifier>pagedown_to_control_v_emacs</identifier>
+    <appdef>
+      <appname>org.gnu.Emacs</appname>
+      <autogen>
+        __KeyToKey__
+        KeyCode::PAGEDOWN,
+        KeyCode::DOT, ModifierFlag::CONTROL_L
+      </autogen>
+    </appdef>
+</item>
+
+
+
+<item>
+  <appendix>end to option > in emacs</appendix>
+    <identifier>end_to_option_>_in_emacs</identifier>
+    <appdef>
+      <appname>org.gnu.Emacs</appname>
+      <autogen>
+        __KeyToKey__
+        KeyCode::END,
+        KeyCode::E, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_R
+      </autogen>
+    </appdef>
+</item>
+
+<item>
+  <appendix>home to home in emacs</appendix>
+    <identifier>home_to_home_in_emacs</identifier>
+    <appdef>
+      <appname>org.gnu.Emacs</appname>
+      <autogen>
+        __KeyToKey__
+        KeyCode::HOME,
+        KeyCode::W, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_R
+      </autogen>
+    </appdef>
+</item>
+
+
+<!-- open keys by label: /? -->
+
+
+</root>
